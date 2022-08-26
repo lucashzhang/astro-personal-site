@@ -52,7 +52,7 @@ function generateTitle(name: string, position?: string) {
 ---
 
 <div class={`Card ${direction}`}>
-	<a class="Card-Thumbnail" href={link} target="_blank">
+	<a class="Card-Thumbnail" href={link ? link : undefined} target="_blank">
 		<img src={picture} alt={title || ""} loading="lazy" />
 	</a>
 	<div class="Card-Content">
