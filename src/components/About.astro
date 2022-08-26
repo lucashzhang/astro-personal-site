@@ -1,26 +1,27 @@
 ---
 import Window from './Window.astro';
+const aboutFile = await Astro.glob('../cms/about.md');
+const aboutContent = aboutFile[0];
+const { title, picture, linkedin, resume } = aboutContent.frontmatter;
+const body = aboutContent.rawContent();
 ---
 
 <section id="about">
-  <img src="/Me.jpg" alt="Me" loading="lazy" />
+  <img src={picture} alt="Me" loading="lazy" />
   <Window color="primary">
     <div class="About-Content">
-      <h1>About Me</h1>
+      <h1>{title}</h1>
       <hr />
-      <p>
-        Hello! My name is Lucas Zhang. I'm a currently a senior at UNC Chapel Hill with Computer Science Major and a Data Science Minor.
-        This website is both my resume and my sandbox where I can explore new technologies that I find fun or interesting.
-      </p>
+      <p>{body}</p>
       <div class="Button-Group">
         <a
           class="Button"
-          href="https://linkedin.com/in/lucashzhang"
+          href={linkedin}
           target="_blank">Linkedin</a
         >
         <a
           class="Button"
-          href="https://drive.google.com/file/d/1kYoxdLcPnO5h7ehvS6RkL8_2aIfyihdu/view?usp=sharing"
+          href={resume}
           target="_blank">Resume</a
         >
       </div>
