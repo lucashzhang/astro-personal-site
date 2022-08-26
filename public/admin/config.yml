@@ -16,5 +16,7 @@ collections: # A list of collections the CMS should be able to edit
           - { label: Title, name: title, widget: string }
           - { label: Body, name: body, widget: text }
           - { label: Picture, name: picture, widget: image }
+          - { label: Linkedin, name: linkedin, widget: string }
+          - { label: Resume, name: resume, widget: string }
 
     
