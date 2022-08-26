@@ -6,7 +6,7 @@ export interface Props {
 	direction: string;
 	picture: string;
 	name: string;
-	position: string;
+	position?: string;
 	link?: string;
 	start?: string;
 	end?: string;
@@ -46,7 +46,7 @@ function generateDate(start?: string, end?: string) {
 	return `${formattedStart} \u2192 ${formattedEnd || "Present"}`;
 }
 
-function generateTitle(name: string, position: string) {
+function generateTitle(name: string, position?: string) {
 	return position ? position + (name && ` @${name}`) : name;
 }
 ---

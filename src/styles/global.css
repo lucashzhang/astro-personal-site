@@ -57,6 +57,10 @@ hr {
   color: lightgray
 }
 
+a {
+  color: var(--cl-secondary)
+}
+
 .Button {
   background-color: var(--cl-secondary);
   color: var(--cl-text);

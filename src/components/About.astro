@@ -3,7 +3,7 @@ import Window from './Window.astro';
 const aboutFile = await Astro.glob('../cms/about.md');
 const aboutContent = aboutFile[0];
 const { title, picture, linkedin, resume } = aboutContent.frontmatter;
-const body = aboutContent.rawContent();
+const body = await aboutContent.compiledContent();
 ---
 
 <section id="about">
@@ -12,7 +12,7 @@ const body = aboutContent.rawContent();
     <div class="About-Content">
       <h1>{title}</h1>
       <hr />
-      <p>{body}</p>
+      <Fragment set:html={body} />
       <div class="Button-Group">
         <a
           class="Button"

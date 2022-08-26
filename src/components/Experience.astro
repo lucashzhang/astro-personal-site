@@ -22,7 +22,7 @@ const work = experiences
 const experienceFile = await Astro.glob("../cms/experience.md");
 const experienceContent = experienceFile[0];
 const { title } = experienceContent.frontmatter;
-const body = experienceContent.rawContent();
+const body = await experienceContent.compiledContent();
 ---
 
 <section id="experience">
@@ -31,7 +31,7 @@ const body = experienceContent.rawContent();
       <Window color="primary">
         <h1>{title}</h1>
         <hr />
-        <p>{body}</p>
+        <Fragment set:html={body} />
       </Window>
       <svg
         xmlns="http://www.w3.org/2000/svg"

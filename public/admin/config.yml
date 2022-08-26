@@ -42,7 +42,7 @@ collections: # A list of collections the CMS should be able to edit
       - { label: 'Picture', name: 'picture', widget: 'image' }
       - { label: 'Start', name: 'start', widget: 'date' }
       - { label: 'End', name: 'end', widget: 'date', default: '' }
-      - { label: 'Link', name: 'link', widget: 'string' }
+      - { label: 'Link', name: 'link', widget: 'string', default: '' }
   - name: 'projects'
     label: 'Projects'
     folder: 'src/cms/projects' # The path to the folder where the documents are stored
@@ -54,7 +54,7 @@ collections: # A list of collections the CMS should be able to edit
       - { label: 'Picture', name: 'picture', widget: 'image' }
       - { label: 'Start', name: 'start', widget: 'date' }
       - { label: 'End', name: 'end', widget: 'date', default: '' }
-      - { label: 'Link', name: 'link', widget: 'string' }
+      - { label: 'Link', name: 'link', widget: 'string', default: '' }
       - { label: 'Technologies', name: 'technologies', widget: 'list' }
 
     

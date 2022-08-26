@@ -3,15 +3,15 @@ import Window from "./Window.astro";
 import Card from "./Card.astro";
 
 interface WorkItemFrontMatter {
-  company: string;
-  position: string;
+  name: string;
   picture: string;
   start: string;
   end?: string;
   link?: string;
+  technologies?: string[];
 }
 
-const projects = await Astro.glob("../cms/experiences/*.md");
+const projects = await Astro.glob("../cms/projects/*.md");
 const proj = projects
   .map((item) => ({
     ...(item.frontmatter as WorkItemFrontMatter),
@@ -19,10 +19,11 @@ const proj = projects
   }))
   .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime());
 
-const projectFile = await Astro.glob("../cms/experience.md");
+const projectFile = await Astro.glob("../cms/projects.md");
 const projectContent = projectFile[0];
 const { title } = projectContent.frontmatter;
-const body = projectContent.rawContent();
+const body = await projectContent.compiledContent();
+// console.log(projectContent.compiledContent())
 ---
 
 <section id="projects">
@@ -31,7 +32,7 @@ const body = projectContent.rawContent();
       <Window color="primary">
         <h1>{title}</h1>
         <hr />
-        <p>{body}</p>
+        <Fragment set:html={body} />
       </Window>
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -44,8 +45,7 @@ const body = projectContent.rawContent();
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-        />
+          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
       </svg>
     </div>
   </div>
@@ -53,13 +53,13 @@ const body = projectContent.rawContent();
     {
       proj.map((item) => (
         <Card
-          name={item.company}
-          position={item.position}
+          name={item.name}
           picture={item.picture}
           start={item.start}
           end={item.end}
           link={item.link}
           body={item.body}
+          technologies={item.technologies}
           direction="left"
         />
       ))
