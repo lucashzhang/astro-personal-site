@@ -24,6 +24,12 @@ collections: # A list of collections the CMS should be able to edit
         fields:
           - { label: Title, name: title, widget: string }
           - { label: Body, name: body, widget: text }
+      - label: 'Projects'
+        name: projects
+        file: 'src/cms/projects.md'
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Body, name: body, widget: text }
   - name: 'experiences'
     label: 'Experiences'
     folder: 'src/cms/experiences' # The path to the folder where the documents are stored
@@ -37,5 +43,18 @@ collections: # A list of collections the CMS should be able to edit
       - { label: 'Start', name: 'start', widget: 'date' }
       - { label: 'End', name: 'end', widget: 'date', default: '' }
       - { label: 'Link', name: 'link', widget: 'string' }
+  - name: 'projects'
+    label: 'Projects'
+    folder: 'src/cms/projects' # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    delete: true
+    fields: # The fields each document in this collection have
+      - { label: 'Name', name: 'name', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'text' }
+      - { label: 'Picture', name: 'picture', widget: 'image' }
+      - { label: 'Start', name: 'start', widget: 'date' }
+      - { label: 'End', name: 'end', widget: 'date', default: '' }
+      - { label: 'Link', name: 'link', widget: 'string' }
+      - { label: 'Technologies', name: 'technologies', widget: 'list' }
 
     
