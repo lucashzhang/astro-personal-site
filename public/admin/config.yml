@@ -29,6 +29,6 @@ collections: # A list of collections the CMS should be able to edit
       - { label: 'Body', name: 'body', widget: 'text' }
       - { label: 'Picture', name: 'picture', widget: 'image' }
       - { label: 'Start', name: 'start', widget: 'datetime' }
-      - { label: 'End', name: 'end', widget: 'datetime' }
+      - { label: 'End', name: 'end', widget: 'datetime', default: '' }
 
     
