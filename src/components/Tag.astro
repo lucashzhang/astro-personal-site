@@ -1,0 +1,56 @@
+---
+export interface Props {
+  color: string;
+}
+const { color } = Astro.props;
+---
+
+<div class={`Tag notion-${color}`}>
+  <slot />
+</div>
+
+<style>
+  .Tag {
+    padding: 1px 2px;
+    border-radius: 2px;
+    margin: 0px 2px;
+    background-color: var(--cl-notion-tag, #505558);
+  }
+  /* Classes for Notion colors */
+
+  .notion-gray {
+    --cl-notion-tag: #6f7376;
+  }
+
+  .notion-brown {
+    --cl-notion-tag: #6d5f5a;
+  }
+
+  .notion-orange {
+    --cl-notion-tag: #a3784a;
+  }
+
+  .notion-yellow {
+    --cl-notion-tag: #a3944d;
+  }
+
+  .notion-green {
+    --cl-notion-tag: #4a7c75;
+  }
+
+  .notion-blue {
+    --cl-notion-tag: #4c748d;
+  }
+
+  .notion-purple {
+    --cl-notion-tag: #705d94;
+  }
+
+  .notion-pink {
+    --cl-notion-tag: #945179;
+  }
+
+  .notion-red {
+    --cl-notion-tag: #a3605d;
+  }
+</style>

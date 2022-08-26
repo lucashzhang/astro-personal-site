@@ -1,76 +1,206 @@
 ---
+import Window from "./Window.astro";
+import Tag from "./Tag.astro";
+
 export interface Props {
-	title: string;
+	direction: string;
+	picture: string;
+	name: string;
+	position: string;
+	link?: string;
+	start?: string;
+	end?: string;
 	body: string;
-	href: string;
+	technologies?: string[];
 }
 
-const { href, title, body } = Astro.props as Props;
+const {
+	direction,
+	picture,
+	name,
+	position,
+	link,
+	start,
+	end,
+	body,
+	technologies,
+} = Astro.props as Props;
+const date = generateDate(start, end);
+const title = generateTitle(name, position);
+
+function generateDate(start?: string, end?: string) {
+	if (!start && !end) return "";
+	const formattedStart =
+		start &&
+		new Date(start).toLocaleString("default", {
+			month: "short",
+			year: "numeric",
+		});
+	const formattedEnd =
+		end &&
+		new Date(end).toLocaleString("default", {
+			month: "short",
+			year: "numeric",
+		});
+
+	return `${formattedStart} \u2192 ${formattedEnd || "Present"}`;
+}
+
+function generateTitle(name: string, position: string) {
+	return position ? position + (name && ` @${name}`) : name;
+}
 ---
 
-<li class="link-card">
-	<a href={href}>
-		<h2>
-			{title}
-			<span>&rarr;</span>
-		</h2>
-		<p>
-			{body}
-		</p>
+<div class={`Card ${direction}`}>
+	<a class="Card-Thumbnail" href={link} target="_blank">
+		<img src={picture} alt={title || ""} loading="lazy" />
 	</a>
-</li>
+	<div class="Card-Content">
+		<div class="Card-Extra">
+			{date}
+		</div>
+		<Window color="primary">
+			<h3>
+				{title}
+				{
+					link && (
+						<a class="Card-Link" href={link} target="_blank">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								class="h-5 w-5"
+								viewBox="0 0 20 20"
+								fill="currentColor"
+							>
+								<path d="M11 3a1 1 0 100 2h2.586l-6.293 6.293a1 1 0 101.414 1.414L15 6.414V9a1 1 0 102 0V4a1 1 0 00-1-1h-5z" />
+								<path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z" />
+							</svg>
+						</a>
+					)
+				}
+			</h3>
+			<p>{body}</p>
+		</Window>
+		<div class="Card-Extra">
+			{technologies && technologies.map((tech) => <Tag color="">{tech}</Tag>)}
+		</div>
+	</div>
+</div>
+
 <style>
-	:root {
-		--link-gradient: linear-gradient(45deg, #4f39fa, #da62c4 30%, var(--color-border) 60%);
+	.Card {
+		position: relative;
+		display: grid;
+		grid-template-columns: 1fr 6em 1fr;
+		grid-template-rows: 1fr;
+		align-items: center;
+		height: 18rem;
 	}
 
-	.link-card {
-		list-style: none;
-		display: flex;
-		padding: 0.15rem;
-		background-image: var(--link-gradient);
-		background-size: 400%;
-		border-radius: 0.5rem;
-		background-position: 100%;
-		transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	.Card-Content {
+		grid-row: 1;
+		z-index: 100;
+		transition: filter ease 0.25s;
 	}
 
-	.link-card > a {
-		width: 100%;
-		text-decoration: none;
-		line-height: 1.4;
-		padding: 1em 1.3em;
-		border-radius: 0.35rem;
-		color: var(--text-color);
-		background-color: white;
-		opacity: 0.8;
+	.Card-Thumbnail {
+		transition: transform ease 0.25s;
+		grid-row: 1;
+		z-index: 99;
 	}
 
-	h2 {
-		margin: 0;
-		transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+	.right > .Card-Thumbnail {
+		grid-column: 2 / 4;
+		margin-left: auto;
+	}
+
+	.right > .Card-Content {
+		grid-column: 1 / 3;
+	}
+
+	.left > .Card-Thumbnail {
+		grid-column: 1 / 3;
+	}
+
+	.left > .Card-Content {
+		grid-column: 2 / 4;
+	}
+
+	.Card-Link {
+		height: 100%;
+		color: var(--cl-secondary);
+	}
+
+	.Card-Link svg {
+		height: 1em;
+	}
+
+	img {
+		object-fit: cover;
+		object-position: left;
+		height: 16rem;
+		aspect-ratio: 16 / 9;
+		max-width: 100%;
+	}
+
+	.Card-Thumbnail:hover + .Card-Content {
+		filter: blur(4px) opacity(0.5);
+	}
+
+	.Card-Thumbnail:hover {
+		z-index: 101;
+		transform: scale(1.01);
 	}
 
 	p {
-		margin-top: 0.75rem;
-		margin-bottom: 0;
+		margin-top: 0.5rem;
 	}
 
-	h2 span {
-		display: inline-block;
-		transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+	.Card-Extra {
+		height: 1rem;
+		margin: 8px 4px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
 	}
 
-	.link-card:is(:hover, :focus-within) {
-		background-position: 0;
+	.right > .Card-Content > .Card-Extra {
+		justify-content: start;
 	}
 
-	.link-card:is(:hover, :focus-within) h2 {
-		color: #4f39fa;
+	.left > .Card-Content > .Card-Extra {
+		justify-content: end;
 	}
 
-	.link-card:is(:hover, :focus-within) h2 span {
-		will-change: transform;
-		transform: translateX(2px);
+	@media only screen and (max-width: 768px) {
+		.Card {
+			height: 100%;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+
+		.Card-Content {
+			position: relative;
+			top: -2rem;
+			width: calc(100% - 2rem);
+		}
+
+		.Card-Extra {
+			display: none;
+		}
+
+		p {
+			display: none;
+		}
+
+		.Card-Thumbnail {
+			width: 100%;
+		}
+
+		img {
+			width: 100%;
+			height: auto;
+		}
 	}
 </style>
