@@ -18,5 +18,17 @@ collections: # A list of collections the CMS should be able to edit
           - { label: Picture, name: picture, widget: image }
           - { label: Linkedin, name: linkedin, widget: string }
           - { label: Resume, name: resume, widget: string }
+  - name: 'experiences'
+    label: 'Experiences'
+    folder: 'src/cms/experiences' # The path to the folder where the documents are stored
+    create: true # Allow users to create new documents in this collection
+    delete: true
+    fields: # The fields each document in this collection have
+      - { label: 'Company', name: 'company', widget: 'string' }
+      - { label: 'Position', name: 'position', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'text' }
+      - { label: 'Picture', name: 'picture', widget: 'image' }
+      - { label: 'Start', name: 'start', widget: 'datetime' }
+      - { label: 'End', name: 'end', widget: 'datetime' }
 
     
