@@ -9,7 +9,7 @@ collections: # A list of collections the CMS should be able to edit
   - name: 'sections' # Used in routes, ie.: /admin/collections/:slug/edit
     label: 'Sections' # Used in the UI, ie.: "New Post"
     files:
-      - label: 'About Section'
+      - label: 'About'
         name: 'about'
         file: 'src/cms/about.md'
         fields:
@@ -18,6 +18,12 @@ collections: # A list of collections the CMS should be able to edit
           - { label: Picture, name: picture, widget: image }
           - { label: Linkedin, name: linkedin, widget: string }
           - { label: Resume, name: resume, widget: string }
+      - label: 'Experience'
+        name: experience
+        file: 'src/cms/experience.md'
+        fields:
+          - { label: Title, name: title, widget: string }
+          - { label: Body, name: body, widget: text }
   - name: 'experiences'
     label: 'Experiences'
     folder: 'src/cms/experiences' # The path to the folder where the documents are stored

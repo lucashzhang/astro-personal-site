@@ -11,27 +11,27 @@ interface WorkItemFrontMatter {
   link?: string;
 }
 
-const experience = await Astro.glob("../cms/experiences/*.md");
-const work = experience.map((item) => ({
-  ...(item.frontmatter as WorkItemFrontMatter),
-  body: item.rawContent(),
-})).sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime());
+const experiences = await Astro.glob("../cms/experiences/*.md");
+const work = experiences
+  .map((item) => ({
+    ...(item.frontmatter as WorkItemFrontMatter),
+    body: item.rawContent(),
+  }))
+  .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime());
+
+const experienceFile = await Astro.glob("../cms/experience.md");
+const experienceContent = experienceFile[0];
+const { title } = experienceContent.frontmatter;
+const body = experienceContent.rawContent();
 ---
 
 <section id="experience">
   <div class="stable">
     <div class="stable-container">
       <Window color="primary">
-        <h1>My Experiences</h1>
+        <h1>{title}</h1>
         <hr />
-        <p>
-          Over the last few years, I've worked/interned at various places such
-          as Amazon, SAS, Duke University as well as my own school's Computer
-          Science department. I'm also taking an active role in my Computer
-          Science community by doing things like directing the Carolina Data
-          Challenge Hackathon and serving as the current President of the
-          Computer Science + Social Good Club at UNC.
-        </p>
+        <p>{body}</p>
       </Window>
       <svg
         xmlns="http://www.w3.org/2000/svg"
