@@ -1,56 +1,39 @@
 ---
 export interface Props {
-  color: string;
+  text: string;
 }
-const { color } = Astro.props;
+const { text } = Astro.props;
+
+function createColor(input: string) {
+  let hash = 0,
+    len = input.length;
+  for (let i = 0; i < len; i++) {
+    hash = (hash << 5) - hash + input.charCodeAt(i);
+    hash |= 0; // to 32bit integer
+  }
+
+  const hue = (hash * 137.508) % 360; // use golden angle approximation
+  let saturation = hash % 2 === 0 ? "40%" : "20%";
+  saturation = hash % 3 === 0 ? "30%" : saturation;
+  let value = hash % 2 === 0 ? "40%" : "60%";
+  value = hash % 4 === 0 ? "50%" : value;
+  return `hsl(${hue},${saturation},${value})`;
+}
+
+
+const tagColor = createColor(text)
 ---
 
-<div class={`Tag notion-${color}`}>
-  <slot />
+<div class={`Tag notion-${text}`}>
+  {text}
 </div>
 
-<style>
+<style define:vars={{ tagColor }}>
   .Tag {
     padding: 1px 2px;
     border-radius: 2px;
     margin: 0px 2px;
-    background-color: var(--cl-notion-tag, #505558);
+    background-color: var(--tagColor, #505558);
   }
   /* Classes for Notion colors */
-
-  .notion-gray {
-    --cl-notion-tag: #6f7376;
-  }
-
-  .notion-brown {
-    --cl-notion-tag: #6d5f5a;
-  }
-
-  .notion-orange {
-    --cl-notion-tag: #a3784a;
-  }
-
-  .notion-yellow {
-    --cl-notion-tag: #a3944d;
-  }
-
-  .notion-green {
-    --cl-notion-tag: #4a7c75;
-  }
-
-  .notion-blue {
-    --cl-notion-tag: #4c748d;
-  }
-
-  .notion-purple {
-    --cl-notion-tag: #705d94;
-  }
-
-  .notion-pink {
-    --cl-notion-tag: #945179;
-  }
-
-  .notion-red {
-    --cl-notion-tag: #a3605d;
-  }
 </style>

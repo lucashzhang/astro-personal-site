@@ -81,7 +81,7 @@ function generateTitle(name: string, position?: string) {
 			<p>{body}</p>
 		</Window>
 		<div class="Card-Extra">
-			{technologies && technologies.map((tech) => <Tag color="">{tech}</Tag>)}
+			{technologies && technologies.map((tech) => <Tag text={tech} />)}
 		</div>
 	</div>
 </div>
