@@ -3,7 +3,7 @@ name: Carolina Data Challenge Website
 picture: /images/uploads/cdcunc.png
 start: 2021-05-17T14:53:27.588Z
 end: 2022-05-07T04:00:00.000Z
-link: ""
+link: https://github.com/lucashzhang/cdc-public-21
 technologies:
   - ReactJS
   - Docker
