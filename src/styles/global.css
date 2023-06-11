@@ -1,8 +1,8 @@
 :root {
-  --cl-primary: #2A529F;
-  --cl-secondary: #bd1d72;
-  --cl-background: #070E20;
-  --cl-background-light: rgba(9, 30, 83, 0.88);
+  --cl-primary: #5e5e5e;
+  --cl-secondary: #58bbac;
+  --cl-background: #161616;
+  --cl-background-light: rgba(59, 59, 59, 0.88);
   --cl-text: white;
   scroll-behavior: smooth;
 }
