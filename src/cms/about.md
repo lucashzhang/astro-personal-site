@@ -1,6 +1,6 @@
 ---
 title: About Me
-picture: /images/uploads/me.jpg
+picture: /images/uploads/pxl_20230521_140212741~3.jpg
 linkedin: https://www.linkedin.com/in/lucashzhang/
 resume: https://drive.google.com/file/d/1kYoxdLcPnO5h7ehvS6RkL8_2aIfyihdu/view
 ---
