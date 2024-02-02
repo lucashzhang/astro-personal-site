@@ -1,106 +1,106 @@
 :root {
-  --cl-primary: #5e5e5e;
-  --cl-secondary: #58bbac;
-  --cl-background: #161616;
-  --cl-background-light: rgba(59, 59, 59, 0.88);
-  --cl-text: white;
-  scroll-behavior: smooth;
-}
-
-body {
-  box-sizing: border-box;
-  margin: 0px;
-  padding: 0px;
-  background: fixed no-repeat url('/WebsiteBackground3.svg'), fixed linear-gradient(145deg, var(--cl-background),  var(--cl-background-light), var(--cl-secondary));
-  background-size: cover;
-  background-position: center;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  color: var(--cl-text);
-  text-align: left;
-}
-
-section {
-  padding: 2rem max(calc(50vw - 800px), 2rem);
-}
-
-main {
-  background-color: var(--cl-background);
-  border-bottom: 2px solid var(--cl-primary);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  margin: 0;
-  padding: 0;
-}
-
-h1 {
-  font-size: 2.5rem;
-}
-
-p {
-  margin: 0;
-  line-height: 1.3;
-}
-
-img {
-  border-radius: 4px;
-}
-
-hr {
-  color: lightgray
-}
-
-a {
-  color: var(--cl-secondary)
-}
-
-.Button {
-  background-color: var(--cl-secondary);
-  color: var(--cl-text);
-  text-decoration: none;
-  transition: opacity ease 0.5s;
-  padding: 2px 4px;
-  text-align: center;
-  display: inline-block;
-}
-
-.Button:hover {
-  opacity: 0.8;
-}
-
-/* Stuff for the icon backgrounds */
-
-.stable-container {
-  display: grid;
-  grid-template-columns: 1.5rem 1fr 1.5rem;
-}
-
-.stable-container > svg {
-  grid-column: 2;
-  grid-row: 1;
-  color: var(--cl-secondary);
-}
-
-.stable-container > .Window {
-  grid-column: 1 / 4;
-  grid-row: 1;
-  height: fit-content;
-  margin: auto;
-}
-
-@media only screen and (max-width: 1200px) {
-  .stable-container > svg {
-    display: none;
+    --cl-primary: #5e5e5e;
+    --cl-secondary: #58bbac;
+    --cl-background: #161616;
+    --cl-background-light: rgba(59, 59, 59, 0.88);
+    --cl-text: white;
+    scroll-behavior: smooth;
   }
-
-  /* :root {
-    --cl-background-light: #091E53
-  } */
-}
+  
+  body {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    background: fixed no-repeat url('/WebsiteBackground3.svg'), fixed linear-gradient(145deg, var(--cl-background),  var(--cl-background-light), var(--cl-secondary));
+    background-size: cover;
+    background-position: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+      "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    color: var(--cl-text);
+    text-align: left;
+  }
+  
+  section {
+    padding: 2rem max(calc(50vw - 800px), 2rem);
+  }
+  
+  main {
+    background-color: var(--cl-background);
+    border-bottom: 2px solid var(--cl-primary);
+  }
+  
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    font-size: 2.5rem;
+  }
+  
+  p {
+    margin: 0;
+    line-height: 1.3;
+  }
+  
+  img {
+    border-radius: 4px;
+  }
+  
+  hr {
+    color: lightgray
+  }
+  
+  a {
+    color: var(--cl-secondary)
+  }
+  
+  .Button {
+    background-color: var(--cl-secondary);
+    color: var(--cl-text);
+    text-decoration: none;
+    transition: opacity ease 0.5s;
+    padding: 2px 4px;
+    text-align: center;
+    display: inline-block;
+  }
+  
+  .Button:hover {
+    opacity: 0.8;
+  }
+  
+  /* Stuff for the icon backgrounds */
+  
+  .stable-container {
+    display: grid;
+    grid-template-columns: 1.5rem 1fr 1.5rem;
+  }
+  
+  .stable-container > svg {
+    grid-column: 2;
+    grid-row: 1;
+    color: var(--cl-secondary);
+  }
+  
+  .stable-container > .Window {
+    grid-column: 1 / 4;
+    grid-row: 1;
+    height: fit-content;
+    margin: auto;
+  }
+  
+  @media only screen and (max-width: 1200px) {
+    .stable-container > svg {
+      display: none;
+    }
+  
+    /* :root {
+      --cl-background-light: #091E53
+    } */
+  }

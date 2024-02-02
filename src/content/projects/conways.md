@@ -1,6 +1,6 @@
 ---
 name: Conway's Game of Life Projects
-picture: /images/uploads/conway-small-.png
+picture: /images/conway-small-.png
 start: 2019-11-28T15:55:35.865Z
 end: 2020-07-26T04:00:00.000Z
 link: https://lucashzhang.github.io/react-conways-game-of-life/

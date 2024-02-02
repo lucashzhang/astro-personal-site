@@ -8,8 +8,8 @@ export interface Props {
 	name: string;
 	position?: string;
 	link?: string;
-	start?: string;
-	end?: string;
+	start?: Date;
+	end?: Date;
 	body: string;
 	technologies?: string[];
 }
@@ -28,17 +28,17 @@ const {
 const date = generateDate(start, end);
 const title = generateTitle(name, position);
 
-function generateDate(start?: string, end?: string) {
+function generateDate(start?: Date, end?: Date) {
 	if (!start && !end) return "";
 	const formattedStart =
 		start &&
-		new Date(start).toLocaleString("default", {
+		start.toLocaleString("default", {
 			month: "short",
 			year: "numeric",
 		});
 	const formattedEnd =
 		end &&
-		new Date(end).toLocaleString("default", {
+		end.toLocaleString("default", {
 			month: "short",
 			year: "numeric",
 		});

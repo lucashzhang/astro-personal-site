@@ -1,9 +1,8 @@
 ---
 name: Varian Project
-picture: /images/uploads/varian-small-.png
+picture: /images/varian-small-.png
 start: 2020-12-14T15:10:35.679Z
 end: 2021-10-25T04:00:00.000Z
-link: ""
 technologies:
   - ReactJS
   - ElectronJS

@@ -1,9 +1,9 @@
 ---
+import { getEntry } from "astro:content"
 import Window from './Window.astro';
-const aboutFile = await Astro.glob('../cms/about.md');
-const aboutContent = aboutFile[0];
-const { title, picture, linkedin, resume } = aboutContent.frontmatter;
-const body = await aboutContent.compiledContent();
+
+const aboutContent = await getEntry("main", "about")
+const { body, data: { title, picture, linkedin, resume }} = aboutContent
 ---
 
 <section id="about">

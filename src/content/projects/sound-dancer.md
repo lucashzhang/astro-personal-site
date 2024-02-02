@@ -1,6 +1,6 @@
 ---
 name: Sound Dancer
-picture: /images/uploads/sounddancer.jpg
+picture: /images/sounddancer.jpg
 start: 2020-05-14T14:57:05.071Z
 end: 2020-07-22T04:00:00.000Z
 link: https://github.com/lucashzhang/SoundDancer

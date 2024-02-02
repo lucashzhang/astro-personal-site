@@ -1,29 +1,14 @@
 ---
+import { getEntry, getCollection } from "astro:content";
 import Window from "./Window.astro";
 import Card from "./Card.astro";
 
-interface WorkItemFrontMatter {
-  name: string;
-  picture: string;
-  start: string;
-  end?: string;
-  link?: string;
-  technologies?: string[];
-}
+const projectsContent = await getEntry("main", "projects")
+const { body, data: { title } } = projectsContent;
 
-const projects = await Astro.glob("../cms/projects/*.md");
-const proj = projects
-  .map((item) => ({
-    ...(item.frontmatter as WorkItemFrontMatter),
-    body: item.rawContent(),
-  }))
-  .sort((a, b) => new Date(b.start).getTime() - new Date(a.start).getTime());
+const projects = await getCollection("projects")
+const sortedProjects = projects.sort(({ data: { start: startA }}, { data: { start: startB }}) => startB.getTime() - startA.getTime())
 
-const projectFile = await Astro.glob("../cms/projects.md");
-const projectContent = projectFile[0];
-const { title } = projectContent.frontmatter;
-const body = await projectContent.compiledContent();
-// console.log(projectContent.compiledContent())
 ---
 
 <section id="projects">
@@ -51,15 +36,15 @@ const body = await projectContent.compiledContent();
   </div>
   <div class="scrollable">
     {
-      proj.map((item) => (
+      sortedProjects.map(({ body, data: { name, picture, start, end, link, technologies}}) => (
         <Card
-          name={item.name}
-          picture={item.picture}
-          start={item.start}
-          end={item.end}
-          link={item.link}
-          body={item.body}
-          technologies={item.technologies}
+          name={name}
+          picture={picture}
+          start={start}
+          end={end}
+          link={link}
+          body={body}
+          technologies={technologies}
           direction="left"
         />
       ))
