@@ -1,0 +1,94 @@
+---
+import { getEntry, getCollection } from "astro:content";
+import Window from "./Window.astro";
+import Card from "./Card.astro";
+
+const projectsContent = await getEntry("main", "projects")
+const { body, data: { title } } = projectsContent;
+
+const projects = await getCollection("projects")
+const sortedProjects = projects.sort(({ data: { start: startA }}, { data: { start: startB }}) => startB.getTime() - startA.getTime())
+
+---
+
+<section id="projects">
+  <div class="stable">
+    <div class="stable-container">
+      <Window color="primary">
+        <h1>{title}</h1>
+        <hr />
+        <Fragment set:html={body} />
+      </Window>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+      </svg>
+    </div>
+  </div>
+  <div class="scrollable">
+    {
+      sortedProjects.map(({ body, data: { name, picture, start, end, link, technologies}}) => (
+        <Card
+          name={name}
+          picture={picture}
+          start={start}
+          end={end}
+          link={link}
+          body={body}
+          technologies={technologies}
+          direction="left"
+        />
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  section {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 6rem;
+  }
+
+  .stable {
+    position: sticky;
+    top: 0px;
+    max-height: 100vh;
+    width: 45%;
+    display: flex;
+    align-items: center;
+    z-index: 10;
+  }
+
+  .scrollable {
+    z-index: 100;
+    width: 55%;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    section {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .stable {
+      position: inherit;
+      width: 100%;
+      padding: 0;
+    }
+
+    .scrollable {
+      width: 100%;
+      padding: 0;
+    }
+  }
+</style>

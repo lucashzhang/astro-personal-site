@@ -1,0 +1,82 @@
+---
+import { getEntry } from "astro:content"
+import Window from './Window.astro';
+
+const aboutContent = await getEntry("main", "about")
+const { body, data: { title, picture, linkedin, resume }} = aboutContent
+---
+
+<section id="about">
+  <img src={picture} alt="Me" loading="lazy" />
+  <Window color="primary">
+    <div class="About-Content">
+      <h1>{title}</h1>
+      <hr />
+      <Fragment set:html={body} />
+      <div class="Button-Group">
+        <a
+          class="Button"
+          href={linkedin}
+          target="_blank">Linkedin</a
+        >
+        <a
+          class="Button"
+          href={resume}
+          target="_blank">Resume</a
+        >
+      </div>
+    </div>
+  </Window>
+</section>
+
+<style>
+  section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 3rem;
+    height: 100%;
+    gap: 4rem;
+  }
+
+  img {
+    width: 20rem;
+  }
+
+  hr {
+    width: 100%;
+  }
+
+  .About-Content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .Button-Group {
+    margin-top: auto;
+    margin-bottom: 0.5rem;
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    padding-top: 2rem;
+  }
+
+  hr {
+    width: 100%
+  }
+
+  @media only screen and (max-width: 768px) {
+    section {
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    img {
+      width: 100%;
+      height: auto;
+    }
+
+  }
+</style>
