@@ -4,7 +4,8 @@ import Window from "./Window.astro";
 import Card from "./Card.astro";
 
 const projectsContent = await getEntry("main", "projects")
-const { body, data: { title } } = projectsContent;
+const { data: { title } } = projectsContent;
+const { Content } = await projectsContent.render()
 
 const projects = await getCollection("projects")
 const sortedProjects = projects.sort(({ data: { start: startA }}, { data: { start: startB }}) => startB.getTime() - startA.getTime())
@@ -17,7 +18,7 @@ const sortedProjects = projects.sort(({ data: { start: startA }}, { data: { star
       <Window color="primary">
         <h1>{title}</h1>
         <hr />
-        <Fragment set:html={body} />
+        <Content />
       </Window>
       <svg
         xmlns="http://www.w3.org/2000/svg"

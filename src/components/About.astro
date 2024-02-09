@@ -3,7 +3,8 @@ import { getEntry } from "astro:content"
 import Window from './Window.astro';
 
 const aboutContent = await getEntry("main", "about")
-const { body, data: { title, picture, linkedin, resume }} = aboutContent
+const { data: { title, picture, linkedin, resume }} = aboutContent
+const { Content } = await aboutContent.render()
 ---
 
 <section id="about">
@@ -12,7 +13,7 @@ const { body, data: { title, picture, linkedin, resume }} = aboutContent
     <div class="About-Content">
       <h1>{title}</h1>
       <hr />
-      <Fragment set:html={body} />
+      <Content />
       <div class="Button-Group">
         <a
           class="Button"
