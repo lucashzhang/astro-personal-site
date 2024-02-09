@@ -7,7 +7,7 @@ link: https://lucashzhang.github.io/react-conways-game-of-life/
 technologies:
   - Java Swing
   - Angular
-  - ReactJS
+  - React
   - Redux
 ---
 This is a series of projects where I write Conway's Game of Life in new Languages/Frameworks that I learn. So far it's been written in Java Swing, Angular, and most recently in ReactJS using Redux.
